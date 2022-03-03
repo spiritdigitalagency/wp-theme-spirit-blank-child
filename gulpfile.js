@@ -8,6 +8,7 @@ const sassLint = require('gulp-sass-lint');
 const groupmq = require('gulp-group-css-media-queries');
 const browserSync = require('browser-sync').create();
 const purgecss = require('gulp-purgecss');
+const cleanCSS = require('gulp-clean-css');
 
 const SASS_SOURCES = [
     'assets/scss/*.scss', // This picks up our style.scss file at the root of the theme
@@ -72,7 +73,7 @@ function prodStyles() {
                 return broadMatches.concat(innerMatches);
             }
         }))
-        // .pipe(cleanCSS({compatibility: "ie8"}))
+        .pipe(cleanCSS({compatibility: "ie8"}))
         .pipe(dest(`${ASSETS_DIR}css`));
 }
 
